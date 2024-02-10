@@ -7,6 +7,6 @@ const order_schema=new mongoose.Schema({
     Address:String,
     Bookdate:String,
     Mark:String,
-    Time:String,
+    bookTime:String,
 })
 module.exports=mongoose.model('orders',order_schema)
