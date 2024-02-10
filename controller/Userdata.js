@@ -5,6 +5,7 @@ const orderSchema = require('../mongodb/orderSchema')
 const userDetails=async(req,res)=>{
     try{
    await mongoose.connect(process.env.DATABASE)
+   console.log(req.body.detail)
     await orderSchema.create(req.body.detail)
     res.status(200).send('ok')
 }
@@ -12,6 +13,18 @@ catch(err){console.log(err)}
 finally{
     mongoose.disconnect()
 }
+}
+const marked=async(req,res)=>{
+    try{
+        await mongoose.connect(process.env.DATABASE)
+        await orderSchema.findByIdAndUpdate(req.body.id,{ Mark:'marked'})
+    }
+    catch(err){
+        console.log(err)
+    }
+    finally{
+        await mongoose.disconnect()
+    }
 }
 const customer_details=async(req,res)=>{
     try{
@@ -31,4 +44,4 @@ const customer_details=async(req,res)=>{
         await mongoose.disconnect()
     }
 }
-module.exports={userDetails,customer_details}
+module.exports={userDetails,customer_details,marked}
