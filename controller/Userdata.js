@@ -27,6 +27,19 @@ const marked=async(req,res)=>{
         await mongoose.disconnect()
     }
 }
+const delete_order=async(req,res)=>{
+    try{
+        await mongoose.connect(process.env.DATABASE)
+        await orderSchema.findByIdAndDelete(req.body.id)
+        res.status(200).send('ok')
+    }
+    catch(err){
+        console.log(err)
+    }
+    finally{
+        await mongoose.disconnect()
+    }
+}
 const customer_details=async(req,res)=>{
     try{
    await mongoose.connect(process.env.DATABASE)
@@ -45,4 +58,4 @@ const customer_details=async(req,res)=>{
         await mongoose.disconnect()
     }
 }
-module.exports={userDetails,customer_details,marked}
+module.exports={userDetails,customer_details,marked,delete_order}
