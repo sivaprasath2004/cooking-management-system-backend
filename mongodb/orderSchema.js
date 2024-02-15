@@ -8,5 +8,7 @@ const order_schema=new mongoose.Schema({
     Bookdate:String,
     Mark:String,
     bookTime:String,
+    Menu:[String],
+    Cheif:Number
 })
 module.exports=mongoose.model('orders',order_schema)
